@@ -18,6 +18,7 @@ function tdf_settings() {
 	$tdf[] = array('name'=>'tdf_access_token_secret','label'=>'Account Access Token Secret');
 	$tdf[] = array('name'=>'tdf_cache_expire','label'=>'Cache Duration (Default 3600)');
 	$tdf[] = array('name'=>'tdf_user_timeline','label'=>'Twitter Feed Screen Name*');
+	$tdf[] = array('name'=>'tdf_url','label'=>'Twitter API URL');
 	return $tdf;
 }
 

@@ -22,6 +22,7 @@ function getTweets($username = false, $count = 20, $options = false) {
   $config['token_secret'] = get_option('tdf_access_token_secret');
   $config['screenname'] = get_option('tdf_user_timeline');
   $config['cache_expire'] = intval(get_option('tdf_cache_expire'));
+  $config['url'] = (get_option('tdf_url'));
   if ($config['cache_expire'] < 1) $config['cache_expire'] = 3600;
   $config['directory'] = plugin_dir_path(__FILE__);
   

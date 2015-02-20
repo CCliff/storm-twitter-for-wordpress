@@ -22,7 +22,8 @@ class StormTwitter {
     'token' => '',
     'token_secret' => '',
     'screenname' => '',
-    'cache_expire' => 3600      
+    'cache_expire' => 3600,
+    'url'=> '',     
   );
   
   public $st_last_error = false;
@@ -61,7 +62,7 @@ class StormTwitter {
     }
     
     //If we're here, we need to load.
-    $result = $this->oauthGetTweets($screenname,$options);
+    $result = $this->oauthGetTweets($screenname,$options,$url);
     
     if (is_array($result) && isset($result['errors'])) {
       if (is_array($result) && isset($result['errors'][0]) && isset($result['errors'][0]['message'])) {
@@ -139,7 +140,7 @@ class StormTwitter {
     }
   }
   
-  private function oauthGetTweets($screenname,$options) {
+  private function oauthGetTweets($screenname,$options,$url) {
     $key = $this->defaults['key'];
     $secret = $this->defaults['secret'];
     $token = $this->defaults['token'];
@@ -156,7 +157,7 @@ class StormTwitter {
     if (empty($screenname)) return array('error'=>'Missing Twitter Feed Screen Name - Check Settings');
     
     $connection = new TwitterOAuth($key, $secret, $token, $token_secret);
-    $result = $connection->get('statuses/user_timeline', $options);
+    $result = $connection->get($url, $options);
     
     if (is_file($this->getCacheLocation())) {
       $cache = json_decode(file_get_contents($this->getCacheLocation()),true);
